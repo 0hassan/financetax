@@ -10,3 +10,8 @@ const ERROR_MESSAGES = {
 	MISSING_INCOME: 'Income is required',
 	MISSING_YEAR: 'Year is required'
 };
+
+module.exports = {
+	TAX_YEARS,
+	ERROR_MESSAGES
+};

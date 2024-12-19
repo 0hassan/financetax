@@ -1,3 +1,6 @@
+const { TaxCalculatorError } = require('../errors/errors');
+const { TAX_YEARS, ERROR_MESSAGES } = require('./constants');
+
 /**
  * Validates the inputs for income and year.
  * @param {number} income - The income to validate.
@@ -25,4 +28,3 @@ const validateInputs = (income, year) => {
 module.exports = {
 	validateInputs
 };
-

@@ -51,7 +51,7 @@ class Pakistan {
 		const variableTax = taxableAmount * slab.rate;
 		const totalTax = (slab.fixedTax || 0) + variableTax;
 
-		return totalTax;
+		return Math.round(totalTax); // Round the total tax to avoid precision issues
 	}
 
 	/**

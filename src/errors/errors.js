@@ -6,3 +6,7 @@ class TaxCalculatorError extends Error {
 		this.code = code;
 	}
 }
+
+module.exports = {
+	TaxCalculatorError
+};
