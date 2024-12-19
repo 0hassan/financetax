@@ -1,9 +1,15 @@
 // index.js
 const pakistanTaxSlabs = require('./config/pakistanTaxSlabs');
-const calculator = new TaxCalculator(pakistanTaxSlabs);
+const { validateInputs } = require('./utils/utils');
+const { TaxCalculatorError } = require('./errors/errors');
+const { TAX_YEARS } = require('./utils/constants');
+const Pakistan = require('./countries/pakistan');
+
+const calculator = new Pakistan(pakistanTaxSlabs);
 
 module.exports = {
 	calculator,
 	TaxCalculatorError,
-	TAX_YEARS
+	TAX_YEARS,
+	validateInputs
 };

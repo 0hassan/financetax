@@ -1,3 +1,11 @@
+const { validateInputs } = require('../utils/utils');
+const { TaxCalculatorError } = require('../errors/errors');
+
+/**
+ * Formats the given amount as currency.
+ * @param {number} amount - The amount to format.
+ * @returns {string} The formatted currency string.
+ */
 const formatCurrency = (amount) => {
 	return new Intl.NumberFormat('en-PK', {
 		style: 'currency',
@@ -7,11 +15,20 @@ const formatCurrency = (amount) => {
 	}).format(amount);
 };
 
+/**
+ * Class representing Pakistan's tax calculations.
+ */
 class Pakistan {
 	constructor(taxSlabs) {
 		this.taxSlabs = taxSlabs;
 	}
 
+	/**
+	 * Gets the tax slabs for the given year.
+	 * @param {number} year - The year to get the tax slabs for.
+	 * @returns {Array} The tax slabs for the year.
+	 * @throws {TaxCalculatorError} If no tax slabs are found for the year.
+	 */
 	getSlabsForYear(year) {
 		validateInputs(0, year);
 		const slabs = this.taxSlabs[year];
@@ -21,6 +38,12 @@ class Pakistan {
 		return slabs;
 	}
 
+	/**
+	 * Calculates the tax for a given income and slab.
+	 * @param {number} income - The income to calculate tax for.
+	 * @param {Object} slab - The tax slab to use for calculation.
+	 * @returns {number} The calculated tax.
+	 */
 	calculateTaxForSlab(income, slab) {
 		if (income <= slab.min) return 0;
 
@@ -31,6 +54,13 @@ class Pakistan {
 		return totalTax;
 	}
 
+	/**
+	 * Calculates the annual tax for a given income and year.
+	 * @param {number} income - The income to calculate tax for.
+	 * @param {number} year - The year to calculate tax for.
+	 * @returns {number} The calculated annual tax.
+	 * @throws {TaxCalculatorError} If unable to determine the tax slab.
+	 */
 	calculateAnnualTax(income, year) {
 		validateInputs(income, year);
 		const slabs = this.getSlabsForYear(year);
@@ -48,11 +78,23 @@ class Pakistan {
 		return Math.round(tax);
 	}
 
+	/**
+	 * Calculates the monthly tax for a given income and year.
+	 * @param {number} income - The monthly income to calculate tax for.
+	 * @param {number} year - The year to calculate tax for.
+	 * @returns {number} The calculated monthly tax.
+	 */
 	calculateMonthlyTax(income, year) {
 		const annualTax = this.calculateAnnualTax(income * 12, year);
 		return Math.round(annualTax / 12);
 	}
 
+	/**
+	 * Gets a summary of the tax calculations for a given income and year.
+	 * @param {number} income - The income to calculate tax for.
+	 * @param {number} year - The year to calculate tax for.
+	 * @returns {Object} The tax summary.
+	 */
 	getTaxSummary(income, year) {
 		const annualTax = this.calculateAnnualTax(income, year);
 		const monthlyTax = Math.round(annualTax / 12);

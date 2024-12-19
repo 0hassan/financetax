@@ -1,7 +1,7 @@
 {
   "name": "financetax",
   "version": "1.0.0",
-  "description": "",
+  "description": "A package to calculate taxes based on Pakistan's tax slabs.",
   "main": "index.js",
   "scripts": {
     "test": "npm run test"
