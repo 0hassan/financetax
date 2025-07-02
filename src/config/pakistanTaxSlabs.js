@@ -1,4 +1,12 @@
 const pakistanTaxSlabs = {
+	2025: [
+		{ min: 0, max: 600000, rate: 0 },
+		{ min: 600001, max: 1200000, rate: 0.01 },
+		{ min: 1200001, max: 2200000, rate: 0.11, fixedTax: 6000 },
+		{ min: 2200001, max: 3200000, rate: 0.23, fixedTax: 116000 },
+		{ min: 3200001, max: 4100000, rate: 0.30, fixedTax: 346000 },
+		{ min: 4100001, max: Infinity, rate: 0.35, fixedTax: 616000 }
+	],
 	2024: [
 		{ min: 0, max: 600000, rate: 0 },
 		{ min: 600001, max: 1200000, rate: 0.05 },

@@ -1,0 +1,31 @@
+# Dev dependencies
+node_modules
+coverage
+.nyc_output
+
+# Source if you're only publishing the build
+src
+test
+tests
+__tests__
+
+# Build tools & configs
+*.log
+*.swp
+*.swo
+.eslintrc*
+.prettierrc*
+.babelrc*
+*.config.js
+.vscode
+.idea
+npm-debug.log*
+jest.config.js
+tsconfig.json
+
+# Env files
+.env*
+.gitignore
+.npmignore
+*.tgz
+.github
